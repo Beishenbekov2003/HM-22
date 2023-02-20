@@ -3,8 +3,6 @@ import styled from "styled-components";
 import MealItemForm from "./MealItemForm";
 
 const MealItem = ({ meal }) => {
-
-
   return (
     <Container>
       <StyledItemInfo>

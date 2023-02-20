@@ -5,9 +5,8 @@ import { ReactComponent as PlusIcon } from "../../../assets/icons/plus-icon.svg"
 import { useDispatch } from "react-redux";
 import { addToBasket } from "../../../store/meals/BasketSlice";
 
-
-const MealItemForm = ({ id, price,title }) => {
- const dispatch= useDispatch()
+const MealItemForm = ({ id, price, title }) => {
+  const dispatch = useDispatch();
   const [amount, setAmount] = useState(1);
 
   const amountChangeHandler = (event) => {
@@ -21,9 +20,9 @@ const MealItemForm = ({ id, price,title }) => {
       id,
       price,
       title,
-      amount
+      amount,
     };
-    dispatch(addToBasket(basketItem))
+    dispatch(addToBasket(basketItem));
   };
   return (
     <StyledForm onSubmit={submitHandler}>
@@ -48,7 +47,6 @@ const MealItemForm = ({ id, price,title }) => {
 };
 
 export default MealItemForm;
-
 
 const Container = styled.div`
   margin-bottom: 10px;

@@ -6,8 +6,6 @@ export const BasketContext = createContext({
 });
 
 export const BasketProvider = ({ children }) => {
-
-
   const [items, setItems] = useState([]);
 
   const getBasket = async () => {
@@ -35,30 +33,6 @@ export const BasketProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
     }
-
-    // getBasket()
-
-    //     console.log(newItem);
-    // setItems((prevState) => {
-    //     if(!prevState.length){
-    //         return [newItem]
-    //     }
-
-    //     const doesItemExists = prevState.find((oldItem) => oldItem.id === newItem.id)
-
-    //     if (!doesItemExists){
-    //         return[...prevState,newItem]
-    //     }
-
-    //     const updatedItems = prevState.map((oldItem)=>{
-    //         if(oldItem.id === newItem.id){
-    //             oldItem.amount = oldItem.amount + newItem.amount
-    //         }
-    //         return oldItem
-    //     })
-    //     return updatedItems
-    //     // return [...prevState,item]
-    // })
   };
 
   const updateBasketItem = async ({ id, amount }) => {
@@ -75,7 +49,6 @@ export const BasketProvider = ({ children }) => {
   };
 
   const deleteBasketItem = async (id) => {
-
     try {
       const { data } = await fetchApi(`basketItem/${id}/delete`, {
         method: "DELETE",
@@ -87,52 +60,15 @@ export const BasketProvider = ({ children }) => {
     }
   };
 
-  // const incrementAmountHandler = (id) =>{
-  //     console.log(id);
-  //     const updatedItem = items.map((item) => {
-  //         if(item.id=== id){
-  //         return {...item, amount: ++ item.amount}
-  //         }
-  //         return item
-  //      })
-  //      return setItems(updatedItem)
-  // }
-
-  // const decrementAmountHandler = (id,amount) =>{
-  //     console.log(id);
-
-  //     if(amount < 2){
-  //         console.log("filterItem");
-  //         const filteredItems = items.filter((item) => item.id !== id)
-  //         return setItems(filteredItems)
-  //    }
-
-  //     const updatedItems = items.map((item) => {
-
-  //     if(amount <= 0){
-  //         return {...item, amount: item.amount}
-  //     }
-
-  //         if(item.id=== id){
-  //         return {...item, amount: --item.amount}
-  //         }
-  //         return item
-  //      })
-  //      return setItems(updatedItems)
-  // }
-
   const [showBasket, setShowBasket] = useState(false);
 
   const showBasketHandler = useCallback(() => {
-
     setShowBasket((prevState) => !prevState);
   }, []);
 
   const state = {
     items,
     addToBasket,
-    // incrementAmountHandler,
-    // decrementAmountHandler,
     updateBasketItem,
     deleteBasketItem,
     showBasket,

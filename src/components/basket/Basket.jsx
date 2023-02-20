@@ -7,11 +7,10 @@ import {
   updateBasketItem,
 } from "../../store/meals/BasketSlice";
 import { uiActions } from "../../store/ui/uiSlice";
-import Modal from "../UI/Modal";
 import BasketItem from "./BasketItem";
 import TotalAmount from "./TotalAmount";
-
-const Basket = ({ onClose }) => {
+import Modal from "@mui/material/Modal";
+const Basket = ({ open, onClose }) => {
   const items = useSelector((state) => state.basket.items);
 
   const orderSubmitHandler = async () => {
@@ -22,21 +21,23 @@ const Basket = ({ onClose }) => {
         })
       ).unwrap();
 
-      dispatch(uiActions.showSnackbar({
-        severity: "success",
-        message: "Order completed successfully",
-      }))
+      dispatch(
+        uiActions.showSnackbar({
+          severity: "success",
+          message: "Order completed successfully",
+        })
+      );
     } catch (error) {
-      dispatch(uiActions.showSnackbar({
-        severity: "error",
-        message: "Failed, try again later",
-      }))
-    } finally{
-      onClose()
+      dispatch(
+        uiActions.showSnackbar({
+          severity: "error",
+          message: "Failed, try again later",
+        })
+      );
+    } finally {
+      onClose();
     }
   };
-
-
 
   const dispatch = useDispatch();
   const dec = useCallback(
@@ -62,35 +63,33 @@ const Basket = ({ onClose }) => {
   }, [items]);
   return (
     <>
-      {/* <Snackbar
-        isOpen={snackbarState.isOpen}
-        onClose={closeSnackbarHandler}
-        message={snackbarState.message}
-        severity={snackbarState.severity}
-      /> */}
-      <Modal onClose={onClose}>
-        <StyledTotalContainer>
-          <FiwedHeightContainer>
-            {items.map((item) => {
-              return (
-                <BasketItem
-                  key={item._id}
-                  incrementAmount={() => incrementAmount(item._id, item.amount)}
-                  dec={() => dec(item._id, item.amount)}
-                  title={item.title}
-                  price={item.price}
-                  amount={item.amount}
-                />
-              );
-            })}
-          </FiwedHeightContainer>
+      <Modal open={open}>
+        <Container>
+          <StyledTotalContainer>
+            <FiwedHeightContainer>
+              {items.map((item) => {
+                return (
+                  <BasketItem
+                    key={item._id}
+                    incrementAmount={() =>
+                      incrementAmount(item._id, item.amount)
+                    }
+                    dec={() => dec(item._id, item.amount)}
+                    title={item.title}
+                    price={item.price}
+                    amount={item.amount}
+                  />
+                );
+              })}
+            </FiwedHeightContainer>
 
-          <TotalAmount
-            price={getTotalPrice()}
-            onClose={onClose}
-            onOrder={orderSubmitHandler}
-          />
-        </StyledTotalContainer>
+            <TotalAmount
+              price={getTotalPrice()}
+              onClose={onClose}
+              onOrder={orderSubmitHandler}
+            />
+          </StyledTotalContainer>
+        </Container>
       </Modal>
     </>
   );
@@ -106,4 +105,28 @@ const StyledTotalContainer = styled.div`
 const FiwedHeightContainer = styled.div`
   max-height: 228px;
   overflow-y: scroll;
+`;
+
+const Container = styled.div`
+  position: fixed;
+  top: 20vh;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 30;
+  animation: slide-down 300ms ease-out forwards;
+  width: 40rem;
+  left: calc(50% - 20rem);
+
+  @keyframes slide-down {
+    from {
+      opacity: 0;
+      transform: translateY(-3rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 `;

@@ -5,8 +5,7 @@ import { getMeals } from "../../store/meals/MealsSlice";
 export const useFoods = () => {
   const dispatch = useDispatch();
   const [sortDirection, setSortDirection] = useState("ASC");
-  const { meals =[], isLoading, error } = useSelector((state) => state.meals);
-  //   console.log(isLoading);
+  const { meals = [], isLoading, error } = useSelector((state) => state.meals);
 
   useEffect(() => {
     dispatch(getMeals());

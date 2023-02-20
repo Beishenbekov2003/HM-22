@@ -1,10 +1,9 @@
 import React, { memo } from "react";
-import styled from 'styled-components';
-
+import styled from "styled-components";
 
 const SummaryInfoCard = () => {
   return (
-    <Card>  
+    <Card>
       <StyledHeading>Delicious Food, Delivered To You</StyledHeading>
       <p>
         Choose your favorite meal from our broad selection of available meals
@@ -30,10 +29,10 @@ const Card = styled.div`
   background-color: #383838;
   color: white;
   border-radius: 14px;
-  box-shadow: 0 1px 18px 10px rgb(0, 0, 0 ,25%);
+  box-shadow: 0 1px 18px 10px rgb(0, 0, 0, 25%);
 `;
 const StyledHeading = styled.h1`
-    font-weight: 600;
-font-size: 36px;
-line-height: 54px;
-`
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 54px;
+`;

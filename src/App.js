@@ -8,17 +8,14 @@ import { Provider, useDispatch, useSelector } from "react-redux";
 import { store } from "./store";
 import styled from "styled-components";
 import { useFoods } from "./components/hooks/useFoods";
-import Snackbar  from "./components/UI/Snackbar";
+import Snackbar from "./components/UI/Snackbar";
 import { uiActions } from "./store/ui/uiSlice";
-
-
 
 function AppContent() {
   const dispatch = useDispatch();
   const [isBasketVisible, setBasketVisible] = useState(false);
 
-  const snackbar  = useSelector((state) => state.ui.snackbar);
-  console.log(snackbar);
+  const snackbar = useSelector((state) => state.ui.snackbar);
 
   const { sortDirection, changesetSortDirection, meals, isLoading, error } =
     useFoods();
@@ -40,12 +37,14 @@ function AppContent() {
         </select>
       </Content>
       <Meals meals={meals} isLoading={isLoading} error={error} />
-      {isBasketVisible && <Basket onClose={showBasketHnadler} />}
+      {isBasketVisible && <Basket open={isBasketVisible} onClose={showBasketHnadler} />}
       <Snackbar
         isOpen={snackbar.isOpen}
         message={snackbar.message}
         severity={snackbar.severity}
-        onClose= {() => { dispatch(uiActions.closeSnackbar())}}
+        onClose={() => {
+          dispatch(uiActions.closeSnackbar());
+        }}
       />
     </Provider>
   );
@@ -64,17 +63,3 @@ export default App;
 const Content = styled.div`
   margin-top: 101px;
 `;
-
-// GET /foods
-
-// Headers: { UserID: "your_name"  }
-// GET /basket
-// Headers: { UserID: "your_name"  }
-// POST /foods/:foodId/addToBasket
-// BODY: { amount: number }
-// Headers: { UserID: "your_name"  }
-// DELETE /basketItem/:id/delete
-// Headers: { UserID: "your_name"  }
-// PUT /basketItem/:id/update
-// BODY: { amount: number }
-// Headers: { UserID: "your_name"  }
