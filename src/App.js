@@ -28,6 +28,7 @@ function AppContent() {
 
       <Summary />
       <Content>
+
         <select
           onChange={(e) => changesetSortDirection(e.target.value)}
           value={sortDirection}
@@ -36,6 +37,7 @@ function AppContent() {
           <option value="DESC">more expensive</option>
         </select>
       </Content>
+      
       <Meals meals={meals} isLoading={isLoading} error={error} />
       {isBasketVisible && <Basket open={isBasketVisible} onClose={showBasketHnadler} />}
       <Snackbar

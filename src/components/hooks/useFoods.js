@@ -8,6 +8,7 @@ export const useFoods = () => {
   const { meals = [], isLoading, error } = useSelector((state) => state.meals);
 
   useEffect(() => {
+    
     dispatch(getMeals());
   }, [dispatch]);
 

@@ -6,6 +6,7 @@ import { uiSlice } from "./ui/uiSlice";
 
 const rootReducer = combineReducers({
   [mealsSlice.name]: mealsSlice.reducer,
+  
   [basketSlice.name]: basketSlice.reducer,
   [uiSlice.name] : uiSlice.reducer
 });

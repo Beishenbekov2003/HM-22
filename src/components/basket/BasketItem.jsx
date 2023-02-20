@@ -9,6 +9,7 @@ const BasketItem = ({ title, price, amount, dec, incrementAmount }) => {
       <Content>
         <PriceAndAmount>
           <Price>${price}</Price>
+          
           <Amount>x{amount}</Amount>
         </PriceAndAmount>
         <CounterContainer>

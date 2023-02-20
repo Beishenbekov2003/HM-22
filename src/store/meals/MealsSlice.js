@@ -35,6 +35,7 @@ export const mealsSlice = createSlice({
       state.meals= action.payload
       state.isLoading =false
       state.error = ''
+      
     })
 
     builder.addCase(getMeals.pending, (state) =>{

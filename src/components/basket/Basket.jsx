@@ -66,6 +66,7 @@ const Basket = ({ open, onClose }) => {
       <Modal open={open}>
         <Container>
           <StyledTotalContainer>
+            
             <FiwedHeightContainer>
               {items.map((item) => {
                 return (
@@ -84,6 +85,7 @@ const Basket = ({ open, onClose }) => {
             </FiwedHeightContainer>
 
             <TotalAmount
+
               price={getTotalPrice()}
               onClose={onClose}
               onOrder={orderSubmitHandler}

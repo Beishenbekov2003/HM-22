@@ -7,8 +7,10 @@ const Snackbar = ({isOpen, onClose,message,severity, autoHideDuration  }) => {
         open={isOpen}
         autoHideDuration={autoHideDuration || 4000}
         onClose={onClose}
+
         anchorOrigin={{vertical: 'top', horizontal: 'right'}}
       >
+        
        <Alert onClose={onClose} severity={severity} sx={{ width: '100%' }}>
           {message}
         </Alert>

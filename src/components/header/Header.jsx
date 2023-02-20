@@ -7,6 +7,7 @@ import BasketButton from "./BusketButton";
 
 const Header = ({ onShowBasket }) => {
   const dispatch = useDispatch()
+  
   const items = useSelector((state)=> state.basket.items)
   const [animationClass, setAnimationClass] = useState("");
 

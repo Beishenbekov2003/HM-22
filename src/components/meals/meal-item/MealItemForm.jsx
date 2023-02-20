@@ -14,6 +14,7 @@ const MealItemForm = ({ id, price, title }) => {
   };
 
   const submitHandler = (event) => {
+    
     event.preventDefault();
 
     const basketItem = {

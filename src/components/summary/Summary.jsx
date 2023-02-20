@@ -12,6 +12,7 @@ const Summary = () => {
     <>
       {showBasket && <Basket />}
       <Container>
+        
         <StyledImg src={BackgroundImg} alt="" />
         <SummaryInfoCard />
       </Container>

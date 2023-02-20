@@ -6,6 +6,7 @@ const BasketButton = ({ count, ...restProps }) => {
   return (
     <StyledButton {...restProps}>
       <BasketIcon />
+      
       <StyledTitle>Your cart</StyledTitle>
       <CountStyled id="counter">{count || 0}</CountStyled>
     </StyledButton>

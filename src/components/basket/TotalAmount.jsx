@@ -16,6 +16,7 @@ const TotalAmount = ({ price, onClose, onOrder }) => {
         <StyledTitle>Total Amount</StyledTitle>
         <StyledPrice>${fixedPrice}</StyledPrice>
       </StyledTiltleContainer>
+      
       <ActionButtonsContainer>
         <Button variant="outlined" onClick={onClose}>
           Close
