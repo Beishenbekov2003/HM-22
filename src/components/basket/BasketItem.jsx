@@ -1,6 +1,8 @@
 import { memo } from "react";
 import styled from "styled-components";
-import Button from "../UI/Button";
+import MuiButton from "../UI/Button";
+import AddSharpIcon from '@mui/icons-material/AddSharp';
+import RemoveSharpIcon from '@mui/icons-material/RemoveSharp';
 
 const BasketItem = ({ title, price, amount, dec, incrementAmount }) => {
   return (
@@ -13,16 +15,16 @@ const BasketItem = ({ title, price, amount, dec, incrementAmount }) => {
           <Amount>x{amount}</Amount>
         </PriceAndAmount>
         <CounterContainer>
-          <Button onClick={dec} borderStyle="squared" variant="outlined">
-            -
-          </Button>
-          <Button
+          <MuiButton onClick={dec} styles="squared" variant="outlined">
+            <RemoveSharpIcon/>
+          </MuiButton>
+          <MuiButton
             onClick={incrementAmount}
-            borderStyle="squared"
+            styles="squared"
             variant="outlined"
           >
-            +
-          </Button>
+            <AddSharpIcon/>
+          </MuiButton>
         </CounterContainer>
       </Content>
     </Container>

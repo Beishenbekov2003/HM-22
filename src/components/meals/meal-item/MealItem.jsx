@@ -7,7 +7,6 @@ const MealItem = ({ meal }) => {
     <Container>
       <StyledItemInfo>
         <Styledtitle>{meal.title}</Styledtitle>
-        
         <p>{meal.description}</p>
         <span>${meal.price}</span>
       </StyledItemInfo>

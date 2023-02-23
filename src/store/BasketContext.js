@@ -15,8 +15,6 @@ export const BasketProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
     }
-
-
   };
 
   useEffect(() => {
@@ -27,7 +25,6 @@ export const BasketProvider = ({ children }) => {
     try {
       console.log(newItem);
 
-      
       const response = await fetchApi(`foods/${newItem.id}/addToBasket`, {
         method: "POST",
         body: { amount: newItem.amount },

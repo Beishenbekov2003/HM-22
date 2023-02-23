@@ -1,9 +1,11 @@
-import styled from "styled-components";
-import Button from "../../UI/Button";
+import styledComponent from "styled-components";
 import { useState } from "react";
-import { ReactComponent as PlusIcon } from "../../../assets/icons/plus-icon.svg";
 import { useDispatch } from "react-redux";
 import { addToBasket } from "../../../store/meals/BasketSlice";
+import { styled } from "@mui/system";
+import { TextField } from "@mui/material";
+import MuiButton from "../../UI/Button";
+import AddSharpIcon from '@mui/icons-material/AddSharp';
 
 const MealItemForm = ({ id, price, title }) => {
   const dispatch = useDispatch();
@@ -14,7 +16,6 @@ const MealItemForm = ({ id, price, title }) => {
   };
 
   const submitHandler = (event) => {
-    
     event.preventDefault();
 
     const basketItem = {
@@ -28,28 +29,44 @@ const MealItemForm = ({ id, price, title }) => {
   return (
     <StyledForm onSubmit={submitHandler}>
       <Container>
-        <label htmlFor={id}>Amount</label>
-        <input
-          value={amount}
-          onChange={amountChangeHandler}
+        <label htmlFor={id}>Amount:</label>
+        <StyledTextField
           type="number"
           id={id}
-          min={1}
+          value={amount}
+          onChange={amountChangeHandler}
+          inputProps={{ min: 0, max: 5 }}
+          min={0}
           max={5}
-          defaultChecked={1}
         />
       </Container>
-      <Button>
-        <StyledIcon />
+      <MuiButton
+        variant="contained"
+        styles="rounded"
+        onClick={submitHandler}
+      >
+        <StyledIcon/>
         Add
-      </Button>
+      </MuiButton>
     </StyledForm>
   );
 };
 
 export default MealItemForm;
 
-const Container = styled.div`
+const StyledTextField = styled(TextField)(() => ({
+  "&": {
+    width: "70px",
+    height: "40px",
+    marginBottom: "10px",
+  },
+  "& .MuiOutlinedInput-input": {
+    padding: "5px 10px",
+    fontSize: "14px",
+  },
+}));
+
+const Container = styledComponent.div`
   margin-bottom: 10px;
   label {
     font-weight: 600;
@@ -71,12 +88,12 @@ const Container = styled.div`
   }
 `;
 
-const StyledForm = styled.form`
+const StyledForm = styledComponent.form`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 `;
 
-const StyledIcon = styled(PlusIcon)`
+const StyledIcon = styledComponent(AddSharpIcon)`
   margin-right: 10px;
 `;

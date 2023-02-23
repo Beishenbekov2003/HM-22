@@ -6,10 +6,11 @@ import Meals from "./components/meals/Meals";
 import Summary from "./components/summary/Summary";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { store } from "./store";
-import styled from "styled-components";
+import { styled } from "@mui/system";
 import { useFoods } from "./components/hooks/useFoods";
 import Snackbar from "./components/UI/Snackbar";
 import { uiActions } from "./store/ui/uiSlice";
+import { Select, MenuItem } from "@mui/material";
 
 function AppContent() {
   const dispatch = useDispatch();
@@ -28,18 +29,22 @@ function AppContent() {
 
       <Summary />
       <Content>
-
-        <select
-          onChange={(e) => changesetSortDirection(e.target.value)}
+        <StyledSelect
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          fullWidth={true}
           value={sortDirection}
+          onChange={(e) => changesetSortDirection(e.target.value)}
         >
-          <option value="ASC">cheaper</option>
-          <option value="DESC">more expensive</option>
-        </select>
+          <MenuItem value={"ASC"}>CHEAPER</MenuItem>
+          <MenuItem value={"DESC"}>MORE EXPENSIV</MenuItem>
+        </StyledSelect>
       </Content>
-      
+
       <Meals meals={meals} isLoading={isLoading} error={error} />
-      {isBasketVisible && <Basket open={isBasketVisible} onClose={showBasketHnadler} />}
+      {isBasketVisible && (
+        <Basket open={isBasketVisible} onClose={showBasketHnadler} />
+      )}
       <Snackbar
         isOpen={snackbar.isOpen}
         message={snackbar.message}
@@ -62,6 +67,15 @@ const App = () => {
 
 export default App;
 
-const Content = styled.div`
-  margin-top: 101px;
-`;
+const Content = styled("div")(() => ({
+  "&": {
+    marginTop: "101px",
+  },
+}));
+
+const StyledSelect = styled(Select)(() => ({
+  "&": {
+    backgroundColor: "#ffff",
+    marginBottom: "70px",
+  },
+}));

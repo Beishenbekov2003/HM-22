@@ -11,7 +11,6 @@ export const useFoods = () => {
     
     dispatch(getMeals());
   }, [dispatch]);
-
   const changesetSortDirection = (dir) => {
     setSortDirection(dir);
   };

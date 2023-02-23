@@ -6,16 +6,15 @@ import { getBasket } from "../../store/meals/BasketSlice";
 import BasketButton from "./BusketButton";
 
 const Header = ({ onShowBasket }) => {
-  const dispatch = useDispatch()
-  
-  const items = useSelector((state)=> state.basket.items)
+  const dispatch = useDispatch();
+
+  const items = useSelector((state) => state.basket.items);
   const [animationClass, setAnimationClass] = useState("");
 
+  useEffect(() => {
+    dispatch(getBasket());
+  }, [dispatch]);
 
-  useEffect(()=>{
-dispatch(getBasket())
-  },[dispatch])
-  
   const calculateTotalAmount = useCallback(() => {
     const sum = items.reduce((s, item) => {
       return s + item.amount;
